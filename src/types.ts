@@ -1,4 +1,5 @@
 export interface IContact {
+    id: string;
     name: string;
     jobTitle?: string;
     imageUrl?: string;
@@ -6,3 +7,5 @@ export interface IContact {
     phoneNumbers?: string[];
     address?: string;
 }
+
+export type IContactFormData = Omit<IContact, "id">;
