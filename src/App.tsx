@@ -18,8 +18,14 @@ import {
 } from "./api/mutateOptions";
 import ResponsiveLayout from "./components/ResponsiveLayout";
 
+enum FormState {
+  ADD,
+  UPDATE,
+  CLOSED
+}
+
 function App() {
-	const [formDialogOpen, setFormDialogOpen] = useState<boolean>(false);
+	const [formDialogState, setFormDialogState] = useState<FormState>(FormState.CLOSED);
 	const [selectedContactId, setSelectedContactId] = useState<string | null>();
 	const {
 		data: contacts,
@@ -56,7 +62,7 @@ function App() {
 		} else {
 			mutate(createContact(formData), createContactOptions(formData));
 		}
-		setFormDialogOpen(false);
+		setFormDialogState(FormState.UPDATE);
 	}
 
 	function handleDeleteContact() {
@@ -74,23 +80,23 @@ function App() {
 					selectedContactId={selectedContactId}
 					contacts={contacts}
 					onClickContact={(id) => setSelectedContactId(id)}
-					onClickAddContact={() => setFormDialogOpen(true)}
+					onClickAddContact={() => setFormDialogState(FormState.ADD)}
 				/>
 				{selectedContact && (
 					<ContactDetails
 						key={`${selectedContactId}-contact-details`}
 						contact={selectedContact}
-						onClickEdit={() => setFormDialogOpen(true)}
+						onClickEdit={() => setFormDialogState(FormState.UPDATE)}
 						onClickDelete={handleDeleteContact}
 					/>
 				)}
 			</ResponsiveLayout>
 			<ContactFormDialog
 				key={`${selectedContactId || "create-contact"}-form-dialog`}
-				open={formDialogOpen}
-				onClose={() => setFormDialogOpen(false)}
+				open={[FormState.ADD, FormState.UPDATE].includes(formDialogState)}
+				onClose={() => setFormDialogState(FormState.CLOSED)}
 				onSubmitForm={handleFormSubmit}
-				initialValues={selectedContact}
+				initialValues={formDialogState == FormState.UPDATE && selectedContact}
 			/>
 		</>
 	);
