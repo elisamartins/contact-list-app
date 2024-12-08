@@ -1,6 +1,6 @@
 import { Grid2 } from "@mui/material";
 import ContactList from "./components/ContactList";
-import { cacheKey, createContact, getContacts, updateContact } from "./api/api";
+import { cacheKey, createContact, deleteContact, getContacts, updateContact } from "./api/api";
 import useSWR from "swr";
 import { useState } from "react";
 import ContactDetails from "./components/ContactDetails";
@@ -8,6 +8,7 @@ import { IContact, IContactFormData } from "./types";
 import ContactFormDialog from "./components/ContactFormDialog";
 import {
 	createContactOptions,
+	deleteContactOptions,
 	updateContactOptions,
 } from "./api/mutateOptions";
 
@@ -43,6 +44,14 @@ function App() {
     setFormDialogOpen(false);
 	}
 
+  function handleDeleteContact() {
+    if(!selectedContactId) return;
+    mutate(
+      deleteContact(selectedContactId),
+      deleteContactOptions(selectedContactId),
+    )
+  }
+
 	return (
 		<Grid2 container>
 			<ContactList
@@ -54,6 +63,8 @@ function App() {
 				<ContactDetails
 					key={`${selectedContactId}-contact-details`}
 					contact={selectedContact}
+          onClickEdit={() => setFormDialogOpen(true)}
+          onClickDelete={handleDeleteContact}
 				/>
 			)}
 
@@ -62,6 +73,7 @@ function App() {
 				open={formDialogOpen}
 				onClickCancel={() => setFormDialogOpen(false)}
 				onSubmitForm={handleFormSubmit}
+        initialValues={selectedContact}
 			/>
 		</Grid2>
 	);
