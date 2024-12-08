@@ -29,19 +29,16 @@ const phoneSchema = yup.object().shape({
 });
 
 const schema = yup.object().shape({
-	name: yup.string().max(150).required("Name is required"),
-	jobTitle: yup.string().max(150).optional(),
-	address: yup.string().max(200).optional(),
+	name: yup.string().required("Name is required"),
+	jobTitle: yup.string().optional(),
+	address: yup.string().optional(),
 	email: yup.string().email("Email address is not valid").optional(),
 	phoneNumbers: yup.array().of(phoneSchema).optional(),
 	imageUrl: yup.string().optional(),
 });
 
-interface Props {
-	open: boolean;
-	initialValues?: IContactFormData;
-	onClose: () => void;
-	onSubmitForm: (formData: IContactFormData) => void;
+interface IPhoneInput {
+		number?: string;
 }
 
 interface IFormInput {
@@ -49,9 +46,7 @@ interface IFormInput {
 	jobTitle?: string;
 	address?: string;
 	email?: string;
-	phoneNumbers?: {
-		number?: string;
-	}[];
+	phoneNumbers?: IPhoneInput[];
 	imageUrl?: string;
 }
 
@@ -63,7 +58,7 @@ const defaultValues: IFormInput = {
 	phoneNumbers: [{ number: "" }],
 };
 
-const mapPhoneNumbersToInput = (phoneNumbers: string[]) => {
+const mapPhoneDataToInput = (phoneNumbers: string[]) => {
 	const result = phoneNumbers.map((phone) => ({
 		number: phone,
 	}));
@@ -75,6 +70,22 @@ const mapPhoneNumbersToInput = (phoneNumbers: string[]) => {
 				},
 		  ];
 };
+
+const mapPhoneInputToData = (phoneNumbers?: IPhoneInput[]) => {
+    return (phoneNumbers
+    ? phoneNumbers
+            .filter((phone) => phone.number)
+            .map((phone) => phone.number as string)
+    : []);
+}
+
+
+interface Props {
+	open: boolean;
+	initialValues?: IContactFormData;
+	onClose: () => void;
+	onSubmitForm: (formData: IContactFormData) => void;
+}
 
 export default function ContactFormDialog({
 	open,
@@ -93,7 +104,7 @@ export default function ContactFormDialog({
 		defaultValues: initialValues
 			? {
 					...initialValues,
-					phoneNumbers: mapPhoneNumbersToInput(
+					phoneNumbers: mapPhoneDataToInput(
 						initialValues.phoneNumbers
 					),
 			  }
@@ -113,11 +124,7 @@ export default function ContactFormDialog({
 	function onSubmit(data: IFormInput) {
 		const formData = {
 			...data,
-			phoneNumbers: data.phoneNumbers
-				? data.phoneNumbers
-						.filter((phone) => phone.number)
-						.map((phone) => phone.number as string)
-				: [],
+			phoneNumbers: mapPhoneInputToData(data.phoneNumbers)
 		};
 		onSubmitForm(formData);
 	}
