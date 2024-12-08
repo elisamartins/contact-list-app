@@ -4,7 +4,7 @@ export interface IContact {
     jobTitle?: string;
     imageUrl?: string;
     email?: string;
-    phoneNumbers?: string[];
+    phoneNumbers: string[];
     address?: string;
 }
 
