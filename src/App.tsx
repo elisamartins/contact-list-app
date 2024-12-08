@@ -18,14 +18,12 @@ import {
 } from "./api/mutateOptions";
 import ResponsiveLayout from "./components/ResponsiveLayout";
 
-enum FormState {
-  ADD,
-  UPDATE,
-  CLOSED
-}
-
 function App() {
-	const [formDialogState, setFormDialogState] = useState<FormState>(FormState.CLOSED);
+	const [createContactFormOpen, setCreateContactFormOpen] =
+		useState<boolean>(false);
+	const [updateContactFormOpen, setUpdateContactFormOpen] =
+		useState<boolean>(false);
+
 	const [selectedContactId, setSelectedContactId] = useState<string | null>();
 	const {
 		data: contacts,
@@ -49,7 +47,7 @@ function App() {
 
 	if (error) return <div>{error}</div>;
 
-	const selectedContact = contacts.find(
+	const selectedContact = contacts?.find(
 		(contact: IContact) => contact.id == selectedContactId
 	);
 
@@ -59,10 +57,10 @@ function App() {
 				updateContact(selectedContactId, formData),
 				updateContactOptions(selectedContactId, formData)
 			);
-		} else {
-			mutate(createContact(formData), createContactOptions(formData));
+			setUpdateContactFormOpen(false);
 		}
-		setFormDialogState(FormState.UPDATE);
+		mutate(createContact(formData), createContactOptions(formData));
+		setCreateContactFormOpen(false);
 	}
 
 	function handleDeleteContact() {
@@ -80,24 +78,31 @@ function App() {
 					selectedContactId={selectedContactId}
 					contacts={contacts}
 					onClickContact={(id) => setSelectedContactId(id)}
-					onClickAddContact={() => setFormDialogState(FormState.ADD)}
+					onClickAddContact={() => setCreateContactFormOpen(true)}
 				/>
 				{selectedContact && (
 					<ContactDetails
 						key={`${selectedContactId}-contact-details`}
 						contact={selectedContact}
-						onClickEdit={() => setFormDialogState(FormState.UPDATE)}
+						onClickEdit={() => setUpdateContactFormOpen(true)}
 						onClickDelete={handleDeleteContact}
 					/>
 				)}
 			</ResponsiveLayout>
 			<ContactFormDialog
-				key={`${selectedContactId || "create-contact"}-form-dialog`}
-				open={[FormState.ADD, FormState.UPDATE].includes(formDialogState)}
-				onClose={() => setFormDialogState(FormState.CLOSED)}
+				open={createContactFormOpen}
+				onClose={() => setCreateContactFormOpen(false)}
 				onSubmitForm={handleFormSubmit}
-				initialValues={formDialogState == FormState.UPDATE && selectedContact}
 			/>
+			{selectedContact && (
+				<ContactFormDialog
+					key={`${selectedContactId}-form-dialog`}
+					open={updateContactFormOpen}
+					onClose={() => setUpdateContactFormOpen(false)}
+					onSubmitForm={handleFormSubmit}
+					initialValues={selectedContact}
+				/>
+			)}
 		</>
 	);
 }
