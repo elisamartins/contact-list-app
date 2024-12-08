@@ -19,7 +19,7 @@ export function updateContact(
 	contactId: string,
 	contactFormData: IContactFormData
 ) {
-	return fetch(`${BASE_URL}${cacheKey}${contactId}`, {
+	return fetch(`${BASE_URL}${cacheKey}/${contactId}`, {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(contactFormData),
@@ -27,7 +27,7 @@ export function updateContact(
 }
 
 export function deleteContact(contactId: string) {
-	return fetch(`${BASE_URL}${cacheKey}${contactId}`, {
+	return fetch(`${BASE_URL}${cacheKey}/${contactId}`, {
 		method: "DELETE",
 		headers: { "Content-Type": "application/json" },
 	}).then((result) => result.json());
