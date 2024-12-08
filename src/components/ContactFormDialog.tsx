@@ -38,7 +38,7 @@ const schema = yup.object().shape({
 });
 
 interface IPhoneInput {
-		number?: string;
+	number?: string;
 }
 
 interface IFormInput {
@@ -72,13 +72,12 @@ const mapPhoneDataToInput = (phoneNumbers: string[]) => {
 };
 
 const mapPhoneInputToData = (phoneNumbers?: IPhoneInput[]) => {
-    return (phoneNumbers
-    ? phoneNumbers
-            .filter((phone) => phone.number)
-            .map((phone) => phone.number as string)
-    : []);
-}
-
+	return phoneNumbers
+		? phoneNumbers
+				.filter((phone) => phone.number)
+				.map((phone) => phone.number as string)
+		: [];
+};
 
 interface Props {
 	open: boolean;
@@ -124,7 +123,7 @@ export default function ContactFormDialog({
 	function onSubmit(data: IFormInput) {
 		const formData = {
 			...data,
-			phoneNumbers: mapPhoneInputToData(data.phoneNumbers)
+			phoneNumbers: mapPhoneInputToData(data.phoneNumbers),
 		};
 		onSubmitForm(formData);
 	}
@@ -137,7 +136,9 @@ export default function ContactFormDialog({
 			fullScreen={mobile}
 			onClose={onClose}
 		>
-			<DialogTitle>{initialValues ? "Update" : "Add a"} Contact</DialogTitle>
+			<DialogTitle>
+				{initialValues ? "Update" : "Add a"} Contact
+			</DialogTitle>
 			<DialogContent>
 				<form>
 					<Stack spacing={2} direction={"column"} mt={1}>
@@ -195,6 +196,7 @@ export default function ContactFormDialog({
 										endAdornment: (
 											<InputAdornment position="end">
 												<IconButton
+													edge={"end"}
 													onClick={() =>
 														removePhoneField(index)
 													}

@@ -35,7 +35,13 @@ export default function ContactDetails({
 		<Grid container spacing={3} direction="column">
 			<Grid container wrap="nowrap">
 				{mobile && <Grid>{goBackComponent}</Grid>}
-				<Grid container justifyContent={"center"}>
+				<Grid container sx={{
+					flex:1,
+						flexDirection: mobile ? 'column' : 'row',
+						alignItems: "center",
+						justifyContent: mobile ? 'center' : 'flex-start',
+						textAlign: mobile ? 'center' : 'left',
+				}}>
 					<Avatar
 						src={contact.imageUrl}
 						sx={{
@@ -46,8 +52,8 @@ export default function ContactDetails({
 						component={Paper}
 						elevation={2}
 					/>
-					<Stack sx={{ justifyContent: "center" }}>
-						<Typography variant={"h5"} fontWeight={500}>
+					<Stack sx={{ justifyContent: "center"}}>
+						<Typography variant={"h5"} fontWeight={500} textAlign={"center"}>
 							{contact.name}
 						</Typography>
 						<Typography variant={"subtitle1"}>
@@ -60,7 +66,7 @@ export default function ContactDetails({
 						<Edit />
 					</IconButton>
 
-					<IconButton onClick={onClickDelete}>
+					<IconButton onClick={onClickDelete} edge="end">
 						<Delete />
 					</IconButton>
 				</Stack>

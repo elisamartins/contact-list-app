@@ -101,6 +101,7 @@ function App() {
 									setActivePanel(0);
 									setSelectedContactId(null);
 								}}
+								edge="start"
 							>
 								<ArrowBack />
 							</IconButton>
