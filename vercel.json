@@ -1,6 +1,6 @@
 {
     "functions": {
-      "api/json-server.js": {
+      "api/server.js": {
         "memory": 1024,
         "includeFiles": "data/db.json"
       }
@@ -8,7 +8,7 @@
     "rewrites": [
       {
         "source": "/(.*)",
-        "destination": "api/json-server.js"
+        "destination": "api/server.js"
       }
     ]
   }
