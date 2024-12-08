@@ -32,13 +32,13 @@ export default function ResponsiveLayout({
 				overflow={"auto"}
 				direction={"column"}
 				size={{ sm: 6, md: 4, lg: 3 }}
-                sx={{borderRight:"1px solid #e5e7eb"}}
+				sx={{ borderRight: "1px solid #e5e7eb" }}
 			>
 				{leftPanel}
 			</Grid>
-			<Grid p={4}
-            
-				size={{ sm: 6, md: 4, lg: 4 }}>{rightPanel}</Grid>
+			<Grid p={4} size={{ sm: 6, md: 4, lg: 4 }}>
+				{rightPanel}
+			</Grid>
 		</Grid>
 	);
 }

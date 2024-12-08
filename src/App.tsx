@@ -7,7 +7,7 @@ import {
 	updateContact,
 } from "./api/api";
 import useSWR from "swr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContactDetails from "./components/ContactDetails";
 import { IContact, IContactFormData } from "./types";
 import ContactFormDialog from "./components/ContactFormDialog";
@@ -20,15 +20,24 @@ import ResponsiveLayout from "./components/ResponsiveLayout";
 
 function App() {
 	const [formDialogOpen, setFormDialogOpen] = useState<boolean>(false);
-	const [selectedContactId, setSelectedContactId] = useState<string | null>(
-		null
-	);
+	const [selectedContactId, setSelectedContactId] = useState<string | null>();
 	const {
 		data: contacts,
 		error,
 		isLoading,
 		mutate,
 	} = useSWR(cacheKey, getContacts);
+
+	useEffect(() => {
+		if (contacts) {
+			const isValidId = contacts.some(
+				(c: IContact) => c.id === selectedContactId
+			);
+			if (!selectedContactId || !isValidId) {
+				setSelectedContactId(contacts[0]?.id || null);
+			}
+		}
+	}, [contacts, selectedContactId]);
 
 	if (isLoading) return <div>Loading...</div>;
 
@@ -62,6 +71,7 @@ function App() {
 		<>
 			<ResponsiveLayout activePanelIndex={!selectedContactId ? 0 : 1}>
 				<ContactList
+					selectedContactId={selectedContactId}
 					contacts={contacts}
 					onClickContact={(id) => setSelectedContactId(id)}
 					onClickAddContact={() => setFormDialogOpen(true)}

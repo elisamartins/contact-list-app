@@ -13,12 +13,14 @@ import { useMemo } from "react";
 import { sortContactsByName } from "../utils";
 
 interface Props {
-	contacts: IContact[];
+    contacts: IContact[];
+    selectedContactId?: string | null;
 	onClickAddContact: () => void;
 	onClickContact: (id: string) => void;
 }
 
 export default function ContactList({
+    selectedContactId,
 	contacts,
 	onClickAddContact,
 	onClickContact,
@@ -50,6 +52,7 @@ export default function ContactList({
 			{sortedContacts.map((contact) => (
 				<ListItemButton
 					key={contact.id}
+                    selected={selectedContactId == contact.id}
 					onClick={() => onClickContact(contact.id)}
 				>
 					<ListItemAvatar>
