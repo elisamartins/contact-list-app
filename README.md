@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# Contact List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+A React-based single-page app to manage contacts. Users can create, modify, delete, and view detailed contact information. The app uses a mocked API powered by JSON Server and is deployed on [Vercel](https://contact-list-app-indol.vercel.app/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Deployed App
 
-## Expanding the ESLint configuration
+[Contact List App](https://contact-list-app-indol.vercel.app/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- Create, edit, and delete contacts.
+- View contact details including name, job title, phone numbers, email, address, and an optional picture.
+- Responsive UI using Material UI.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Frontend**: Reactm
+- **API**: JSON Server (mocked API)
+- **UI**: Material UI
+- **Deployment**: Vercel
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## How to Run Locally
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/contact-list-app.git
+   cd contact-list-app
+    ```
+
+2. Install dependencies:
+   ```
+   npm install
+    ```
+
+3. Run the app:
+   ```
+   npm start
+    ```
+  
+4. Start the mocked API:
+    ```
+    json-server --watch db.json --port 5000
+    ```
+
+App will be available on http://localhost:5173, and API on http://localhost:3000.
+
+## Running Tests
+
+To run the unit tests:
+
+  ```
+  npm test
