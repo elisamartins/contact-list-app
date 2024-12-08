@@ -1,6 +1,7 @@
 import { IContactFormData } from "../types";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = import.meta.env.BASE_URL;
+
 export const cacheKey = "/contacts";
 
 export function getContacts() {
