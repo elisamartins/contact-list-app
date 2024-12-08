@@ -7,6 +7,8 @@ import {
 	ListItemText,
 	ListSubheader,
 	Typography,
+	useMediaQuery,
+	useTheme,
 } from "@mui/material";
 import { IContact } from "../types";
 import { useMemo } from "react";
@@ -25,6 +27,9 @@ export default function ContactList({
 	onClickAddContact,
 	onClickContact,
 }: Props) {
+	const theme = useTheme();
+	const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+
 	const sortedContacts = useMemo(
 		() => sortContactsByName(contacts),
 		[contacts]
@@ -52,7 +57,7 @@ export default function ContactList({
 			{sortedContacts.map((contact) => (
 				<ListItemButton
 					key={contact.id}
-                    selected={selectedContactId == contact.id}
+                    selected={!mobile && selectedContactId == contact.id}
 					onClick={() => onClickContact(contact.id)}
 				>
 					<ListItemAvatar>

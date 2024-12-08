@@ -6,6 +6,8 @@ import {
 	Paper,
 	Stack,
 	Typography,
+	useMediaQuery,
+	useTheme,
 } from "@mui/material";
 import { IContact } from "../types";
 import Edit from "@mui/icons-material/Edit";
@@ -16,18 +18,28 @@ import PhoneOutlined from "@mui/icons-material/PhoneOutlined";
 
 interface Props {
 	contact: IContact;
+	goBackComponent: React.ReactNode;
 	onClickEdit: () => void;
 	onClickDelete: () => void;
 }
 
 export default function ContactDetails({
 	contact,
+	goBackComponent,
 	onClickEdit,
 	onClickDelete,
 }: Props) {
+	const theme = useTheme();
+	const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 	return (
 		<Grid container spacing={3} direction="column">
 			<Grid container direction="row">
+				{
+					mobile && <Grid>
+
+						{goBackComponent}
+					</Grid>
+				}
 				<Avatar
 					src={contact.imageUrl}
 					sx={{

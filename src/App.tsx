@@ -17,12 +17,15 @@ import {
 	updateContactOptions,
 } from "./api/mutateOptions";
 import ResponsiveLayout from "./components/ResponsiveLayout";
+import { ArrowBack } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 function App() {
 	const [createContactFormOpen, setCreateContactFormOpen] =
 		useState<boolean>(false);
 	const [updateContactFormOpen, setUpdateContactFormOpen] =
 		useState<boolean>(false);
+	const [activePanel, setActivePanel] = useState<0 | 1>(0);
 
 	const [selectedContactId, setSelectedContactId] = useState<string | null>();
 	const {
@@ -61,8 +64,9 @@ function App() {
 	}
 
 	function handleCreateContact(formData: IContactFormData) {
-		mutate(createContact(formData), createContactOptions(formData));
-		setCreateContactFormOpen(false);
+		mutate(createContact(formData), createContactOptions(formData)).then(
+			() => setCreateContactFormOpen(false)
+		);
 	}
 
 	function handleDeleteContact() {
@@ -75,11 +79,14 @@ function App() {
 
 	return (
 		<>
-			<ResponsiveLayout activePanelIndex={!selectedContactId ? 0 : 1}>
+			<ResponsiveLayout activePanelIndex={activePanel}>
 				<ContactList
 					selectedContactId={selectedContactId}
 					contacts={contacts}
-					onClickContact={(id) => setSelectedContactId(id)}
+					onClickContact={(id) => {
+						setSelectedContactId(id);
+						setActivePanel(1);
+					}}
 					onClickAddContact={() => setCreateContactFormOpen(true)}
 				/>
 				{selectedContact && (
@@ -88,6 +95,16 @@ function App() {
 						contact={selectedContact}
 						onClickEdit={() => setUpdateContactFormOpen(true)}
 						onClickDelete={handleDeleteContact}
+						goBackComponent={
+							<IconButton
+								onClick={() => {
+									setActivePanel(0);
+									setSelectedContactId(null);
+								}}
+							>
+								<ArrowBack />
+							</IconButton>
+						}
 					/>
 				)}
 			</ResponsiveLayout>
