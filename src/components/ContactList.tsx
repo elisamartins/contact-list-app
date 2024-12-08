@@ -12,15 +12,16 @@ import { IContact } from "../types";
 
 interface Props {
 	contacts: IContact[];
+    onClickAddContact: () => void;
     onClickContact: (id: string) => void;
 }
 
-export default function ContactList({ contacts, onClickContact }: Props) {
+export default function ContactList({ contacts, onClickAddContact, onClickContact }: Props) {
 	return (
 		<List>
 			<ListSubheader>
 				<Typography>{`Contacts (${contacts.length})`} </Typography>
-				<Button variant={"contained"}>Add Contact</Button>
+				<Button variant={"contained"} onClick={onClickAddContact}>Add Contact</Button>
 			</ListSubheader>
 			{contacts.map((contact) => (
 				<ListItemButton key={contact.id} onClick={() => onClickContact(contact.id)}>
