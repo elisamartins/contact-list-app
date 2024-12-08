@@ -21,11 +21,11 @@ export function updateContactOptions(
 ) {
 	return {
 		optimisticData: (contacts: IContact[]) => [
-			filterContactsById(updatedContactId, contacts),
+			...filterContactsById(updatedContactId, contacts),
 			{ ...formData, id: updatedContactId },
 		],
 		populateCache: (updatedContact: IContact, contacts: IContact[]) => [
-			filterContactsById(updatedContact.id, contacts),
+			...filterContactsById(updatedContact.id, contacts),
 			updatedContact,
 		],
 		rollbackOnError: true,
