@@ -37,6 +37,7 @@ const schema = yup.object().shape({
 
 interface Props {
 	open: boolean;
+	initialValues?: IContactFormData;
 	onClickCancel: () => void;
 	onSubmitForm: (formData: IContactFormData) => void;
 }
@@ -60,8 +61,22 @@ const defaultValues: IFormInput = {
 	phoneNumbers: [{ number: "" }],
 };
 
+const mapPhoneNumbersToInput = (phoneNumbers: string[]) => {
+	const result = phoneNumbers.map((phone) => ({
+		number: phone,
+	}));
+	return result.length > 0
+		? result
+		: [
+				{
+					number: "",
+				},
+		  ];
+};
+
 export default function ContactFormDialog({
 	open,
+	initialValues,
 	onClickCancel,
 	onSubmitForm,
 }: Props) {
@@ -71,7 +86,14 @@ export default function ContactFormDialog({
 		control,
 		formState: { errors },
 	} = useForm<IFormInput>({
-		defaultValues: defaultValues,
+		defaultValues: initialValues
+			? {
+					...initialValues,
+					phoneNumbers: mapPhoneNumbersToInput(
+						initialValues.phoneNumbers
+					),
+			  }
+			: defaultValues,
 		resolver: yupResolver<IFormInput>(schema),
 	});
 
