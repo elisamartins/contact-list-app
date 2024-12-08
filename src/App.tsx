@@ -51,14 +51,16 @@ function App() {
 		(contact: IContact) => contact.id == selectedContactId
 	);
 
-	function handleFormSubmit(formData: IContactFormData) {
-		if (selectedContactId) {
-			mutate(
-				updateContact(selectedContactId, formData),
-				updateContactOptions(selectedContactId, formData)
-			);
-			setUpdateContactFormOpen(false);
-		}
+	function handleUpdateContact(formData: IContactFormData) {
+		if (!selectedContactId) return;
+		mutate(
+			updateContact(selectedContactId, formData),
+			updateContactOptions(selectedContactId, formData)
+		);
+		setUpdateContactFormOpen(false);
+	}
+
+	function handleCreateContact(formData: IContactFormData) {
 		mutate(createContact(formData), createContactOptions(formData));
 		setCreateContactFormOpen(false);
 	}
@@ -92,14 +94,14 @@ function App() {
 			<ContactFormDialog
 				open={createContactFormOpen}
 				onClose={() => setCreateContactFormOpen(false)}
-				onSubmitForm={handleFormSubmit}
+				onSubmitForm={handleCreateContact}
 			/>
 			{selectedContact && (
 				<ContactFormDialog
 					key={`${selectedContactId}-form-dialog`}
 					open={updateContactFormOpen}
 					onClose={() => setUpdateContactFormOpen(false)}
-					onSubmitForm={handleFormSubmit}
+					onSubmitForm={handleUpdateContact}
 					initialValues={selectedContact}
 				/>
 			)}
