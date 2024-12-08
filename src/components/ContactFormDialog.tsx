@@ -4,12 +4,12 @@ import {
 	DialogActions,
 	DialogContent,
 	DialogTitle,
-	Grid2 as Grid,
 	IconButton,
 	InputAdornment,
+	Stack,
 	TextField,
-    useMediaQuery,
-    useTheme,
+	useMediaQuery,
+	useTheme,
 } from "@mui/material";
 import { IContactFormData } from "../types";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -82,8 +82,8 @@ export default function ContactFormDialog({
 	onClose,
 	onSubmitForm,
 }: Props) {
-    const theme = useTheme();
-    const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+	const theme = useTheme();
+	const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const {
 		register,
 		handleSubmit,
@@ -123,11 +123,17 @@ export default function ContactFormDialog({
 	}
 
 	return (
-		<Dialog open={open} fullWidth maxWidth="xs" fullScreen={mobile} onClose={onClose}>
-			<DialogTitle>Add a Contact</DialogTitle>
+		<Dialog
+			open={open}
+			fullWidth
+			maxWidth="xs"
+			fullScreen={mobile}
+			onClose={onClose}
+		>
+			<DialogTitle>{initialValues ? "Update" : "Add a"} Contact</DialogTitle>
 			<DialogContent>
 				<form>
-					<Grid container spacing={2} direction={"column"}>
+					<Stack spacing={2} direction={"column"} mt={1}>
 						<TextField
 							helperText={
 								errors.name ? errors.name.message : null
@@ -196,7 +202,7 @@ export default function ContactFormDialog({
 						))}
 						{phoneFields.length < 3 && (
 							<Button
-								variant="contained"
+								variant="outlined"
 								startIcon={<AddIcon />}
 								onClick={() => appendPhoneField({ number: "" })}
 							>
@@ -225,7 +231,7 @@ export default function ContactFormDialog({
 							variant="outlined"
 							{...register("imageUrl")}
 						/>
-					</Grid>
+					</Stack>
 				</form>
 			</DialogContent>
 			<DialogActions>

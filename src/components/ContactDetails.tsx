@@ -1,38 +1,88 @@
-import { Avatar, Divider, Grid2, IconButton, Typography } from "@mui/material";
+import {
+	Avatar,
+	Divider,
+	Grid2 as Grid,
+	IconButton,
+	Paper,
+	Stack,
+	Typography,
+} from "@mui/material";
 import { IContact } from "../types";
 import Edit from "@mui/icons-material/Edit";
 import Delete from "@mui/icons-material/Delete";
+import PlaceOutlined from "@mui/icons-material/PlaceOutlined";
+import MailOutline from "@mui/icons-material/MailOutline";
+import PhoneOutlined from "@mui/icons-material/PhoneOutlined";
 
 interface Props {
 	contact: IContact;
-    onClickEdit: () => void;
-    onClickDelete: () => void;
+	onClickEdit: () => void;
+	onClickDelete: () => void;
 }
 
-export default function ContactDetails({ contact, onClickEdit, onClickDelete }: Props) {
+export default function ContactDetails({
+	contact,
+	onClickEdit,
+	onClickDelete,
+}: Props) {
 	return (
-		<Grid2>
-			<Grid2 container direction="row">
-				<Avatar src={contact.imageUrl} />
-				<Grid2 container>
-					<Typography>{contact.name}</Typography>
-					<Typography>{contact.jobTitle}</Typography>
-				</Grid2>
-			</Grid2>
+		<Grid container spacing={3} direction="column">
+			<Grid container direction="row">
+				<Avatar
+					src={contact.imageUrl}
+					sx={{
+						height: 125,
+						width: 125,
+						border: "3px solid #f9fafb",
+					}}
+					component={Paper}
+					elevation={2}
+				/>
+				<Stack sx={{ justifyContent: "center" }}>
+					<Typography variant={"h5"} fontWeight={500}>
+						{contact.name}
+					</Typography>
+					<Typography variant={"subtitle1"}>
+						{contact.jobTitle}
+					</Typography>
+				</Stack>
+				<Stack direction="row" sx={{ alignItems: "flex-start" }}>
+					<IconButton onClick={onClickEdit}>
+						<Edit />
+					</IconButton>
+
+					<IconButton onClick={onClickDelete}>
+						<Delete />
+					</IconButton>
+				</Stack>
+			</Grid>
 			<Divider />
-            <Grid2 container direction="column">
-                <Typography>{contact.address}</Typography>
-                <Typography>{contact.email}</Typography>
-                {contact.phoneNumbers?.map(phone => <Typography key={phone}>{phone}</Typography>)}
-            </Grid2>
+			<Grid container direction="column">
+				{contact.address && (
+					<Grid container spacing={2}>
+						<PlaceOutlined />
+						<Typography> {contact.address}</Typography>
+					</Grid>
+				)}
 
-            <IconButton onClick={onClickEdit}>
-                <Edit/>
-            </IconButton>
+				{contact.email && (
+					<Grid container spacing={2}>
+						<MailOutline />
+						<Typography>{contact.email}</Typography>
+					</Grid>
+				)}
 
-            <IconButton onClick={onClickDelete}>
-                <Delete/>
-            </IconButton>
-		</Grid2>
+				{contact.phoneNumbers.length > 0 && (
+					<Grid container spacing={2}>
+						<PhoneOutlined />
+						<Grid container direction="column">
+							{contact.phoneNumbers?.map((phone) => (
+								<Typography key={phone}>{phone}</Typography>
+							))}
+						</Grid>
+					</Grid>
+				)}
+			</Grid>
+		</Grid>
 	);
 }

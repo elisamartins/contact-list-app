@@ -1,4 +1,4 @@
-import { Grid2, useMediaQuery, useTheme } from "@mui/material";
+import { Grid2 as Grid, useMediaQuery, useTheme } from "@mui/material";
 
 export default function ResponsiveLayout({
 	children,
@@ -18,9 +18,27 @@ export default function ResponsiveLayout({
 	}
 
 	return (
-		<Grid2 container>
-			{leftPanel}
-			{rightPanel}
-		</Grid2>
+		<Grid
+			container
+			direction={"column"}
+			overflow={"hidden"}
+			alignContent={"flex-start"}
+			sx={{
+				height: "100vh",
+			}}
+		>
+			<Grid
+				container
+				overflow={"auto"}
+				direction={"column"}
+				size={{ sm: 6, md: 4, lg: 3 }}
+                sx={{borderRight:"1px solid #e5e7eb"}}
+			>
+				{leftPanel}
+			</Grid>
+			<Grid p={4}
+            
+				size={{ sm: 6, md: 4, lg: 4 }}>{rightPanel}</Grid>
+		</Grid>
 	);
 }

@@ -9,22 +9,49 @@ import {
 	Typography,
 } from "@mui/material";
 import { IContact } from "../types";
+import { useMemo } from "react";
+import { sortContactsByName } from "../utils";
 
 interface Props {
 	contacts: IContact[];
-    onClickAddContact: () => void;
-    onClickContact: (id: string) => void;
+	onClickAddContact: () => void;
+	onClickContact: (id: string) => void;
 }
 
-export default function ContactList({ contacts, onClickAddContact, onClickContact }: Props) {
+export default function ContactList({
+	contacts,
+	onClickAddContact,
+	onClickContact,
+}: Props) {
+	const sortedContacts = useMemo(
+		() => sortContactsByName(contacts),
+		[contacts]
+	);
+
 	return (
-		<List>
-			<ListSubheader>
-				<Typography>{`Contacts (${contacts.length})`} </Typography>
-				<Button variant={"contained"} onClick={onClickAddContact}>Add Contact</Button>
+		<List disablePadding sx={{ backgroundColor: "white" }}>
+			<ListSubheader
+				sx={{
+					px: 2,
+					py: 3,
+					display: "flex",
+					gap: 2,
+					flexDirection: "column",
+					borderBottom: "1px solid #e5e7eb",
+				}}
+			>
+				<Typography variant="h5" color="textPrimary" fontWeight={500}>
+					{`Contacts (${sortedContacts.length})`}{" "}
+				</Typography>
+				<Button variant={"contained"} onClick={onClickAddContact}>
+					Add Contact
+				</Button>
 			</ListSubheader>
-			{contacts.map((contact) => (
-				<ListItemButton key={contact.id} onClick={() => onClickContact(contact.id)}>
+			{sortedContacts.map((contact) => (
+				<ListItemButton
+					key={contact.id}
+					onClick={() => onClickContact(contact.id)}
+				>
 					<ListItemAvatar>
 						<Avatar src={contact.imageUrl} />
 					</ListItemAvatar>
