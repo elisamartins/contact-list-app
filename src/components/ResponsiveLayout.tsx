@@ -13,7 +13,12 @@ export default function ResponsiveLayout({
 
 	if (mobile) {
 		if (activePanelIndex == 0) return leftPanel;
-		if (activePanelIndex == 1) return rightPanel;
+		if (activePanelIndex == 1)
+			return (
+				<Grid py={2} px={3}>
+					{rightPanel}
+				</Grid>
+			);
 		return null;
 	}
 
@@ -31,12 +36,12 @@ export default function ResponsiveLayout({
 				container
 				overflow={"auto"}
 				direction={"column"}
-				size={{ sm: 6, md: 4, lg: 3 }}
+				size={{ sm: 5, md: 4, lg: 3 }}
 				sx={{ borderRight: "1px solid #e5e7eb" }}
 			>
 				{leftPanel}
 			</Grid>
-			<Grid p={4} size={{ sm: 6, md: 4, lg: 4 }}>
+			<Grid p={4} size={{ sm: 7, md: 8, lg: 6 }}>
 				{rightPanel}
 			</Grid>
 		</Grid>
