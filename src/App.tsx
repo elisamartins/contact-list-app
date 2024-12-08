@@ -1,6 +1,11 @@
-import { Grid2 } from "@mui/material";
 import ContactList from "./components/ContactList";
-import { cacheKey, createContact, deleteContact, getContacts, updateContact } from "./api/api";
+import {
+	cacheKey,
+	createContact,
+	deleteContact,
+	getContacts,
+	updateContact,
+} from "./api/api";
 import useSWR from "swr";
 import { useState } from "react";
 import ContactDetails from "./components/ContactDetails";
@@ -11,6 +16,7 @@ import {
 	deleteContactOptions,
 	updateContactOptions,
 } from "./api/mutateOptions";
+import ResponsiveLayout from "./components/ResponsiveLayout";
 
 function App() {
 	const [formDialogOpen, setFormDialogOpen] = useState<boolean>(false);
@@ -41,41 +47,42 @@ function App() {
 		} else {
 			mutate(createContact(formData), createContactOptions(formData));
 		}
-    setFormDialogOpen(false);
+		setFormDialogOpen(false);
 	}
 
-  function handleDeleteContact() {
-    if(!selectedContactId) return;
-    mutate(
-      deleteContact(selectedContactId),
-      deleteContactOptions(selectedContactId),
-    )
-  }
+	function handleDeleteContact() {
+		if (!selectedContactId) return;
+		mutate(
+			deleteContact(selectedContactId),
+			deleteContactOptions(selectedContactId)
+		);
+	}
 
 	return (
-		<Grid2 container>
-			<ContactList
-				contacts={contacts}
-				onClickContact={(id) => setSelectedContactId(id)}
-				onClickAddContact={() => setFormDialogOpen(true)}
-			/>
-			{selectedContact && (
-				<ContactDetails
-					key={`${selectedContactId}-contact-details`}
-					contact={selectedContact}
-          onClickEdit={() => setFormDialogOpen(true)}
-          onClickDelete={handleDeleteContact}
+		<>
+			<ResponsiveLayout activePanelIndex={!selectedContactId ? 0 : 1}>
+				<ContactList
+					contacts={contacts}
+					onClickContact={(id) => setSelectedContactId(id)}
+					onClickAddContact={() => setFormDialogOpen(true)}
 				/>
-			)}
-
+				{selectedContact && (
+					<ContactDetails
+						key={`${selectedContactId}-contact-details`}
+						contact={selectedContact}
+						onClickEdit={() => setFormDialogOpen(true)}
+						onClickDelete={handleDeleteContact}
+					/>
+				)}
+			</ResponsiveLayout>
 			<ContactFormDialog
 				key={`${selectedContactId || "create-contact"}-form-dialog`}
 				open={formDialogOpen}
-				onClickCancel={() => setFormDialogOpen(false)}
+				onClose={() => setFormDialogOpen(false)}
 				onSubmitForm={handleFormSubmit}
-        initialValues={selectedContact}
+				initialValues={selectedContact}
 			/>
-		</Grid2>
+		</>
 	);
 }
 

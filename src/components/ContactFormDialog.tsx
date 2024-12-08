@@ -8,6 +8,8 @@ import {
 	IconButton,
 	InputAdornment,
 	TextField,
+    useMediaQuery,
+    useTheme,
 } from "@mui/material";
 import { IContactFormData } from "../types";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -38,7 +40,7 @@ const schema = yup.object().shape({
 interface Props {
 	open: boolean;
 	initialValues?: IContactFormData;
-	onClickCancel: () => void;
+	onClose: () => void;
 	onSubmitForm: (formData: IContactFormData) => void;
 }
 
@@ -77,9 +79,11 @@ const mapPhoneNumbersToInput = (phoneNumbers: string[]) => {
 export default function ContactFormDialog({
 	open,
 	initialValues,
-	onClickCancel,
+	onClose,
 	onSubmitForm,
 }: Props) {
+    const theme = useTheme();
+    const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 	const {
 		register,
 		handleSubmit,
@@ -119,7 +123,7 @@ export default function ContactFormDialog({
 	}
 
 	return (
-		<Dialog open={open} fullWidth maxWidth="xs">
+		<Dialog open={open} fullWidth maxWidth="xs" fullScreen={mobile} onClose={onClose}>
 			<DialogTitle>Add a Contact</DialogTitle>
 			<DialogContent>
 				<form>
@@ -225,7 +229,7 @@ export default function ContactFormDialog({
 				</form>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={onClickCancel}>Cancel</Button>
+				<Button onClick={onClose}>Cancel</Button>
 				<Button variant="contained" onClick={handleSubmit(onSubmit)}>
 					Save Changes
 				</Button>
