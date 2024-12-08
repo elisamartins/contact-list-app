@@ -33,31 +33,28 @@ export default function ContactDetails({
 	const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 	return (
 		<Grid container spacing={3} direction="column">
-			<Grid container direction="row">
-				{
-					mobile && <Grid>
-
-						{goBackComponent}
-					</Grid>
-				}
-				<Avatar
-					src={contact.imageUrl}
-					sx={{
-						height: 125,
-						width: 125,
-						border: "3px solid #f9fafb",
-					}}
-					component={Paper}
-					elevation={2}
-				/>
-				<Stack sx={{ justifyContent: "center" }}>
-					<Typography variant={"h5"} fontWeight={500}>
-						{contact.name}
-					</Typography>
-					<Typography variant={"subtitle1"}>
-						{contact.jobTitle}
-					</Typography>
-				</Stack>
+			<Grid container wrap="nowrap">
+				{mobile && <Grid>{goBackComponent}</Grid>}
+				<Grid container justifyContent={"center"}>
+					<Avatar
+						src={contact.imageUrl}
+						sx={{
+							height: 125,
+							width: 125,
+							border: "3px solid #f9fafb",
+						}}
+						component={Paper}
+						elevation={2}
+					/>
+					<Stack sx={{ justifyContent: "center" }}>
+						<Typography variant={"h5"} fontWeight={500}>
+							{contact.name}
+						</Typography>
+						<Typography variant={"subtitle1"}>
+							{contact.jobTitle}
+						</Typography>
+					</Stack>
+				</Grid>
 				<Stack direction="row" sx={{ alignItems: "flex-start" }}>
 					<IconButton onClick={onClickEdit}>
 						<Edit />
@@ -73,7 +70,14 @@ export default function ContactDetails({
 				{contact.address && (
 					<Grid container spacing={2}>
 						<PlaceOutlined />
-						<Typography> {contact.address}</Typography>
+						<Typography
+							flex={1}
+							sx={{
+								wordBreak: "break-word",
+							}}
+						>
+							{contact.address}
+						</Typography>
 					</Grid>
 				)}
 
