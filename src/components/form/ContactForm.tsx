@@ -9,7 +9,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteIcon from "@mui/icons-material/DeleteOutline";
 import TextfieldWithErrorMessage from "./TextFieldWithErrorMessage";
 import { IContactFormData, IFormInput } from "./types";
 import { mapPhoneDataToInput, mapPhoneInputToData } from "./utils";
@@ -129,6 +129,7 @@ export default function ContactForm({
 									<InputAdornment position="end">
 										<IconButton
 											edge={"end"}
+											aria-label={`delete phone field ${index}`}
 											onClick={() =>
 												removePhoneField(index)
 											}
@@ -165,7 +166,12 @@ export default function ContactForm({
 					{...register("imageUrl")}
 				/>
 			</Stack>
-			<Stack direction="row" spacing={2} mt={1} sx={{justifyContent: "flex-end"}}>
+			<Stack
+				direction="row"
+				spacing={2}
+				mt={1}
+				sx={{ justifyContent: "flex-end" }}
+			>
 				<Button onClick={onCancel}>Cancel</Button>
 				<Button variant="contained" type="submit">
 					Save Changes

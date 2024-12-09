@@ -26,6 +26,7 @@ describe(ContactForm, () => {
 			await userEvent.type(getEmail(), "johnny.appleseed@gmail.com");
 			await userEvent.type(getAddress(), "123 Apple St.");
 			await userEvent.type(getImageUrl(), "https://mock.com");
+			await userEvent.type(getPhones()[0], "1234567890");
 
 			clickSubmitButton();
 
@@ -38,7 +39,7 @@ describe(ContactForm, () => {
 				jobTitle: "Frontend Developer",
 				address: "123 Apple St.",
 				email: "johnny.appleseed@gmail.com",
-				phoneNumbers: [],
+				phoneNumbers: ["1234567890"],
 				imageUrl: "https://mock.com",
 			});
 		});
@@ -47,6 +48,42 @@ describe(ContactForm, () => {
 			clickSubmitButton();
 			await waitFor(() => {
 				expect(getName()).toBeInvalid();
+			});
+		});
+
+		it("adds a phone field", async () => {
+			const addButton = getAddPhoneNumber();
+			await userEvent.click(addButton);
+			const phoneFields = getPhones();
+			expect(phoneFields).toHaveLength(2);
+			expect(addButton).toBeInTheDocument();
+		});
+
+		it("has a maximum of 3 phone fields", async () => {
+			const addButton = getAddPhoneNumber();
+			await userEvent.click(addButton);
+			await userEvent.click(addButton);
+			const phoneFields = getPhones();
+			expect(phoneFields).toHaveLength(3);
+			expect(addButton).not.toBeInTheDocument();
+		});
+
+		it("removes phone field", async () => {
+			const addButton = getAddPhoneNumber();
+			await userEvent.click(addButton);
+			const firstDeleteButton = getFirstPhoneDeleteButton();
+			await userEvent.click(firstDeleteButton);
+			const phoneFields = screen.getAllByPlaceholderText("Phone Number");
+			expect(phoneFields).toHaveLength(1);
+		});
+
+		it("shows error when phone is invalid", async () => {
+			const phoneFields = getPhones();
+			expect(phoneFields).toHaveLength(1);
+			await userEvent.type(phoneFields[0], "123");
+			clickSubmitButton();
+			await waitFor(() => {
+				expect(phoneFields[0]).toBeInvalid();
 			});
 		});
 	});
@@ -97,6 +134,10 @@ function getJobTitle() {
 	});
 }
 
+function getPhones() {
+	return screen.getAllByPlaceholderText("Phone Number");
+}
+
 function getEmail() {
 	return screen.getByRole("textbox", {
 		name: /email/i,
@@ -115,6 +156,15 @@ function getImageUrl() {
 	});
 }
 
+function getAddPhoneNumber() {
+	return screen.getByText(/add a phone number/i);
+}
+
+function getFirstPhoneDeleteButton() {
+	return screen.getByRole("button", {
+		name: new RegExp(`delete phone field ${0}`, "i"),
+	});
+}
 function clickSubmitButton() {
 	userEvent.click(screen.getByRole("button", { name: /save changes/i }));
 }
