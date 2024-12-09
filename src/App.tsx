@@ -31,7 +31,7 @@ function App() {
 
 	if (isLoading) return <div>Loading...</div>;
 
-	if (error) return <div>{error}</div>;
+	if (error) return <div>{error.message}</div>;
 
 	return (
 		<>
@@ -74,7 +74,10 @@ function App() {
 			>
 				<ContactForm
 					onCancel={() => setCreateContactFormOpen(false)}
-					onSubmitForm={handleCreateContact}
+					onSubmitForm={(data) => {
+						handleCreateContact(data);
+						setCreateContactFormOpen(false);
+					}}
 				/>
 			</ContactFormDialog>
 
@@ -86,7 +89,10 @@ function App() {
 					onClose={() => setUpdateContactFormOpen(false)}
 				>
 					<ContactForm
-						onSubmitForm={handleUpdateContact}
+						onSubmitForm={(data) => {
+							handleUpdateContact(data);
+							setUpdateContactFormOpen(false);
+						}}
 						initialValues={selectedContact}
 						onCancel={() => setUpdateContactFormOpen(false)}
 					/>
