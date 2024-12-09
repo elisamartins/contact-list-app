@@ -22,8 +22,8 @@ function App() {
 
 		selectedContact,
 		selectedContactId,
-		setSelectedContactId,
-
+		
+		handleContactSelected,
 		handleCreateContact,
 		handleUpdateContact,
 		handleDeleteContact,
@@ -40,7 +40,7 @@ function App() {
 					selectedContactId={selectedContactId}
 					contacts={contacts}
 					onClickContact={(id) => {
-						setSelectedContactId(id);
+						handleContactSelected(id);
 						setActivePanel(1);
 					}}
 					onClickAddContact={() => setCreateContactFormOpen(true)}
@@ -59,7 +59,7 @@ function App() {
 							<IconButton
 								onClick={() => {
 									setActivePanel(0);
-									setSelectedContactId(null);
+									handleContactSelected(null);
 								}}
 								edge="start"
 							>
@@ -77,8 +77,10 @@ function App() {
 				<ContactForm
 					onCancel={() => setCreateContactFormOpen(false)}
 					onSubmitForm={(data) => {
-						handleCreateContact(data);
-						setCreateContactFormOpen(false);
+						handleCreateContact(data).then(() => {
+							setCreateContactFormOpen(false);
+							setActivePanel(1);
+						});
 					}}
 				/>
 			</ContactFormDialog>

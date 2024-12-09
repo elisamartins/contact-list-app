@@ -25,13 +25,17 @@ export function useContacts() {
   const selectedContact = contacts?.find((contact: IContact) => contact.id === selectedContactId);
 
   const handleCreateContact = (formData: IContactFormData) =>
-    mutate(createContact(formData), createContactOptions(formData));
+    mutate(createContact(formData), createContactOptions(formData)).then(result => setSelectedContactId(result.id));
 
   const handleUpdateContact = (formData: IContactFormData) =>
     mutate(updateContact(selectedContactId!, formData), updateContactOptions(selectedContactId!, formData));
 
   const handleDeleteContact = () =>
     mutate(deleteContact(selectedContactId!), deleteContactOptions(selectedContactId!));
+
+  const handleContactSelected = (contactId: string|null) => {
+    setSelectedContactId(contactId)
+  }
 
   return {
     contacts,
@@ -40,8 +44,8 @@ export function useContacts() {
 
     selectedContact,
     selectedContactId,
-    setSelectedContactId,
     
+    handleContactSelected,
     handleCreateContact,
     handleUpdateContact,
     handleDeleteContact,
