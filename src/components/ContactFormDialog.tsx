@@ -8,6 +8,7 @@ import {
 	InputAdornment,
 	Stack,
 	TextField,
+	TextFieldProps,
 	useMediaQuery,
 	useTheme,
 } from "@mui/material";
@@ -17,6 +18,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import TextfieldWithErrorMessage from "./TextFieldWitErrorMessage";
 
 const phoneRegExp =
 	/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -24,6 +26,7 @@ const phoneRegExp =
 const phoneSchema = yup.object().shape({
 	number: yup
 		.string()
+		.transform((value) => (value === "" ? undefined : value))
 		.matches(phoneRegExp, "Phone number is not valid")
 		.optional(),
 });
@@ -33,7 +36,7 @@ const schema = yup.object().shape({
 	jobTitle: yup.string().optional(),
 	address: yup.string().optional(),
 	email: yup.string().email("Email address is not valid").optional(),
-	phoneNumbers: yup.array().of(phoneSchema).optional(),
+	phoneNumbers: yup.array().of(phoneSchema).required(),
 	imageUrl: yup.string().optional(),
 });
 
@@ -140,51 +143,40 @@ export default function ContactFormDialog({
 				{initialValues ? "Update" : "Add a"} Contact
 			</DialogTitle>
 			<DialogContent>
-				<form>
+				<form onSubmit={handleSubmit(onSubmit)}>
 					<Stack spacing={2} direction={"column"} mt={1}>
-						<TextField
+						<TextfieldWithErrorMessage
 							helperText={
 								errors.name ? errors.name.message : null
 							}
-							size="small"
 							error={Boolean(errors.name)}
-							fullWidth
 							label={"Name"}
-							variant="outlined"
 							{...register("name", {
-								required: true,
+								required:true,
 								maxLength: 150,
 							})}
 						/>
-						<TextField
+						<TextfieldWithErrorMessage
 							helperText={
 								errors.jobTitle ? errors.jobTitle.message : null
 							}
-							size="small"
 							error={Boolean(errors.jobTitle)}
-							fullWidth
 							label={"Job Title"}
-							variant="outlined"
-							{...(register("name"), { maxLength: 200 })}
+							{...register("jobTitle", { maxLength: 200 })}
 						/>
-						<TextField
+						<TextfieldWithErrorMessage
 							helperText={
 								errors.address ? errors.address.message : null
 							}
-							size="small"
 							error={Boolean(errors.address)}
-							fullWidth
 							label={"Address"}
-							variant="outlined"
-							{...(register("address"), { maxLength: 200 })}
+							{...register("address", { maxLength: 200 })}
 						/>
 						{phoneFields.map((field, index) => (
-							<TextField
+							<TextfieldWithErrorMessage
 								key={field.id}
-								size="small"
 								type="tel"
 								placeholder="Phone Number"
-								fullWidth
 								error={Boolean(errors.phoneNumbers?.[index])}
 								helperText={
 									errors.phoneNumbers?.[index]?.number
@@ -194,6 +186,7 @@ export default function ContactFormDialog({
 								slotProps={{
 									input: {
 										endAdornment: (
+											phoneFields.length > 1 &&
 											<InputAdornment position="end">
 												<IconButton
 													edge={"end"}
@@ -218,37 +211,29 @@ export default function ContactFormDialog({
 								Add a Phone Number
 							</Button>
 						)}
-						<TextField
+						<TextfieldWithErrorMessage
 							helperText={
 								errors.email ? errors.email.message : null
 							}
-							size="small"
 							error={Boolean(errors.email)}
-							fullWidth
 							label={"Email"}
-							variant="outlined"
 							{...register("email")}
 						/>
 						<TextField
 							helperText={
 								errors.imageUrl ? errors.imageUrl.message : null
 							}
-							size="small"
 							error={Boolean(errors.imageUrl)}
-							fullWidth
 							label={"Image URL"}
-							variant="outlined"
 							{...register("imageUrl")}
 						/>
 					</Stack>
-				</form>
-			</DialogContent>
-			<DialogActions>
 				<Button onClick={onClose}>Cancel</Button>
-				<Button variant="contained" onClick={handleSubmit(onSubmit)}>
+				<Button variant="contained" type="submit">
 					Save Changes
 				</Button>
-			</DialogActions>
+				</form>
+			</DialogContent>
 		</Dialog>
 	);
 }
