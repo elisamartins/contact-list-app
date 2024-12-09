@@ -37,7 +37,7 @@ export default function ContactList({
   );
 
   return (
-    <List disablePadding sx={{ backgroundColor: "white" }}>
+    <List disablePadding sx={{ backgroundColor: "white", width: "100%" }}>
       <ListSubheader
         sx={{
           px: 2,

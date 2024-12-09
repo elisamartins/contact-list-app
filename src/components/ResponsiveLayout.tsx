@@ -25,7 +25,6 @@ export default function ResponsiveLayout({
   return (
     <Grid
       container
-      direction={"column"}
       overflow={"hidden"}
       alignContent={"flex-start"}
       sx={{
@@ -35,9 +34,8 @@ export default function ResponsiveLayout({
       <Grid
         container
         overflow={"auto"}
-        direction={"column"}
         size={{ sm: 5, md: 4, lg: 3 }}
-        sx={{ borderRight: "1px solid #e5e7eb" }}
+        sx={{ borderRight: "1px solid #e5e7eb", height: "100%" }}
       >
         {leftPanel}
       </Grid>
