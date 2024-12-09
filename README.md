@@ -16,7 +16,7 @@ A React-based single-page app to manage contacts. Users can create, modify, dele
 
 ## Tech Stack
 
-- **Frontend**: Reactm
+- **Frontend**: React
 - **API**: JSON Server (mocked API)
 - **UI**: Material UI
 - **Deployment**: Vercel
@@ -39,15 +39,15 @@ A React-based single-page app to manage contacts. Users can create, modify, dele
 3. Run the app:
 
    ```
-   npm start
+   npm run dev
    ```
 
 4. Start the mocked API:
    ```
-   json-server --watch db.json --port 5000
+   npm run start:json-server
    ```
 
-App will be available on http://localhost:5173, and API on http://localhost:3000.
+App will be available on http://localhost:5173 and API on http://localhost:3000.
 
 ## Running Tests
 
