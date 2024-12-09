@@ -1,21 +1,20 @@
 import { IContactFormData } from "../../src/types";
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import ContactFormDialog from "../../src/components/ContactFormDialog";
+import ContactForm from "../../src/components/ContactForm";
 import { it, expect, describe, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";
 
-describe(ContactFormDialog, () => {
+describe(ContactForm, () => {
 	describe("without initial values", () => {
 		const mockOnSubmitForm = vi.fn();
 
 		beforeEach(() => {
 			mockOnSubmitForm.mockClear();
 			render(
-				<ContactFormDialog
-					open
-					onClose={() => {}}
+				<ContactForm
+					onCancel={() => {}}
 					onSubmitForm={mockOnSubmitForm}
 				/>
 			);
@@ -66,9 +65,8 @@ describe(ContactFormDialog, () => {
 		beforeEach(() => {
 			mockOnSubmitForm.mockClear();
 			render(
-				<ContactFormDialog
-					open
-					onClose={() => {}}
+				<ContactForm
+					onCancel={() => {}}
 					onSubmitForm={mockOnSubmitForm}
 					initialValues={mockContact}
 				/>

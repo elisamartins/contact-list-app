@@ -6,6 +6,7 @@ import ResponsiveLayout from "./components/ResponsiveLayout";
 import { ArrowBack } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { useContacts } from "./hooks/useContacts";
+import ContactForm from "./components/ContactForm";
 
 function App() {
 	const [createContactFormOpen, setCreateContactFormOpen] =
@@ -18,11 +19,11 @@ function App() {
 		contacts,
 		isLoading,
 		error,
-	
+
 		selectedContact,
 		selectedContactId,
 		setSelectedContactId,
-		
+
 		handleCreateContact,
 		handleUpdateContact,
 		handleDeleteContact,
@@ -67,16 +68,25 @@ function App() {
 			<ContactFormDialog
 				open={createContactFormOpen}
 				onClose={() => setCreateContactFormOpen(false)}
-				onSubmitForm={handleCreateContact}
-			/>
+			>
+				<ContactForm
+					onCancel={() => setCreateContactFormOpen(false)}
+					onSubmitForm={handleCreateContact}
+				/>
+			</ContactFormDialog>
 			{selectedContact && (
 				<ContactFormDialog
 					key={`${selectedContactId}-form-dialog`}
+					hasInitialValues
 					open={updateContactFormOpen}
 					onClose={() => setUpdateContactFormOpen(false)}
-					onSubmitForm={handleUpdateContact}
-					initialValues={selectedContact}
-				/>
+				>
+					<ContactForm
+						onSubmitForm={handleUpdateContact}
+						initialValues={selectedContact}
+						onCancel={() => setCreateContactFormOpen(false)}
+					/>
+				</ContactFormDialog>
 			)}
 		</>
 	);
