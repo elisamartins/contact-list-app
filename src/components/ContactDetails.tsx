@@ -62,11 +62,11 @@ export default function ContactDetails({
 					</Stack>
 				</Grid>
 				<Stack direction="row" sx={{ alignItems: "flex-start" }}>
-					<IconButton onClick={onClickEdit}>
+					<IconButton onClick={onClickEdit} aria-label="edit contact">
 						<Edit />
 					</IconButton>
 
-					<IconButton onClick={onClickDelete} edge="end">
+					<IconButton onClick={onClickDelete} edge="end" aria-label="delete contact">
 						<Delete />
 					</IconButton>
 				</Stack>
