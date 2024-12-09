@@ -149,7 +149,7 @@ export default function ContactForm({
           label={"Email"}
           {...register("email")}
         />
-        <TextField
+        <TextfieldWithErrorMessage
           helperText={errors.imageUrl ? errors.imageUrl.message : null}
           error={Boolean(errors.imageUrl)}
           label={"Image URL"}
