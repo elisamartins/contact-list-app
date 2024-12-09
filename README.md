@@ -56,3 +56,87 @@ To run the unit tests:
 ```
 npm test
 ```
+
+## Mocked API
+
+This API serves as a mock backend to retrieve and manage contact data for testing and development purposes.
+
+### Endpoints
+
+#### `GET /contacts`
+**Description:** Retrieves a list of all contacts.  
+**Example Response:**
+```
+[
+  {
+    "id": 1,
+    "name": "Johnny Appleseed",
+    "jobTitle": "Frontend Developer",
+    "email": "johnny.appleseed@gmail.com",
+    "address": "123 Apple St.",
+    "phoneNumbers": ["1234567890"],
+    "imageUrl": "https://mock.com"
+  }
+]
+```
+
+#### `GET /contacts/:id`
+**Description:** Retrieves a specific contact by their ID.  
+**Example Response:**
+```
+{
+  "id": 1,
+  "name": "Johnny Appleseed",
+  "jobTitle": "Frontend Developer",
+  "email": "johnny.appleseed@gmail.com",
+  "address": "123 Apple St.",
+  "phoneNumbers": ["1234567890"],
+  "imageUrl": "https://mock.com"
+}
+```
+
+#### `POST /contacts`
+**Description:** Adds a new contact.  
+**Request Body:**
+```
+{
+  "name": "New Contact",
+  "jobTitle": "Backend Developer",
+  "email": "new.contact@gmail.com",
+  "address": "456 Orange Blvd.",
+  "phoneNumbers": ["0987654321"],
+  "imageUrl": "https://example.com"
+}
+```
+**Example Response:**
+```
+{
+  "id": 1,
+  "name": "New Contact",
+  "jobTitle": "Backend Developer",
+  "email": "new.contact@gmail.com",
+  "address": "456 Orange Blvd.",
+  "phoneNumbers": ["0987654321"],
+  "imageUrl": "https://example.com"
+}
+```
+
+#### `PUT /contacts/:id`
+**Description:** Updates an existing contact.  
+**Request Body:** Same as `POST /contacts`.
+
+#### `DELETE /contacts/:id`
+**Description:** Deletes a contact by their ID.
+
+**Example Response:**
+```
+{
+  "id": 1,
+  "name": "Deleted Contact",
+  "jobTitle": "Backend Developer",
+  "email": "deleted.contact@gmail.com",
+  "address": "456 Orange Blvd.",
+  "phoneNumbers": ["0987654321"],
+  "imageUrl": "https://example.com"
+}
+```
