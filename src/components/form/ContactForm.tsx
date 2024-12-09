@@ -165,7 +165,7 @@ export default function ContactForm({
 					{...register("imageUrl")}
 				/>
 			</Stack>
-			<Stack direction="row" spacing={2}>
+			<Stack direction="row" spacing={2} mt={1} sx={{justifyContent: "flex-end"}}>
 				<Button onClick={onCancel}>Cancel</Button>
 				<Button variant="contained" type="submit">
 					Save Changes
