@@ -16,7 +16,7 @@ A React-based single-page app to manage contacts. Users can create, modify, dele
 
 ## Tech Stack
 
-- **Frontend**: Reactm
+- **Frontend**: React
 - **API**: JSON Server (mocked API)
 - **UI**: Material UI
 - **Deployment**: Vercel
