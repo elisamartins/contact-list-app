@@ -36,7 +36,6 @@ function App() {
 	return (
 		<>
 			<ResponsiveLayout activePanelIndex={activePanel}>
-
 				<ContactList
 					selectedContactId={selectedContactId}
 					contacts={contacts}
@@ -52,7 +51,10 @@ function App() {
 						key={`${selectedContactId}-contact-details`}
 						contact={selectedContact}
 						onClickEdit={() => setUpdateContactFormOpen(true)}
-						onClickDelete={handleDeleteContact}
+						onClickDelete={() => {
+							handleDeleteContact();
+							setActivePanel(0);
+						}}
 						goBackComponent={
 							<IconButton
 								onClick={() => {
