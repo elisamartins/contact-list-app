@@ -1,6 +1,5 @@
-// hooks/useContacts.ts
 import { useState, useEffect } from "react";
-import { IContact, IContactFormData } from "../types";
+import { IContact } from "../types";
 import { cacheKey, getContacts, createContact, deleteContact, updateContact } from "../api/api";
 import useSWR from "swr";
 import {
@@ -8,6 +7,7 @@ import {
   deleteContactOptions,
   updateContactOptions,
 } from "../api/mutateOptions";
+import { IContactFormData } from "../components/form/types";
 
 export function useContacts() {
   const [selectedContactId, setSelectedContactId] = useState<string | null>();

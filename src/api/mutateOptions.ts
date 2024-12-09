@@ -1,4 +1,5 @@
-import { IContact, IContactFormData } from "../types";
+import { IContactFormData } from "../components/form/types";
+import { IContact } from "../types";
 import { v4 as uuidv4 } from "uuid";
 
 const filterContactsById = (id: string, contacts: IContact[]) =>

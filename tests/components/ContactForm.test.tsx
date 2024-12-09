@@ -1,10 +1,10 @@
-import { IContactFormData } from "../../src/types";
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import ContactForm from "../../src/components/form/ContactForm";
 import { it, expect, describe, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";
+import { IContactFormData } from "../../src/components/form/types";
 
 describe(ContactForm, () => {
 	describe("without initial values", () => {
@@ -20,7 +20,7 @@ describe(ContactForm, () => {
 			);
 		});
 
-		it("should call the onSubmit function when all fields are valid", async () => {
+		it("calls the onSubmit function when all fields are valid", async () => {
 			await userEvent.type(getName(), "Johnny Appleseed");
 			await userEvent.type(getJobTitle(), "Frontend Developer");
 			await userEvent.type(getEmail(), "johnny.appleseed@gmail.com");
@@ -43,7 +43,7 @@ describe(ContactForm, () => {
 			});
 		});
 
-		it("should have name as required field", async () => {
+		it("has name as required field", async () => {
 			clickSubmitButton();
 			await waitFor(() => {
 				expect(getName()).toBeInvalid();
@@ -73,7 +73,7 @@ describe(ContactForm, () => {
 			);
 		});
 
-		it("should call the onSubmit function when all fields are valid", async () => {
+		it("calls the onSubmit function when all fields are valid", async () => {
 			clickSubmitButton();
 
 			await waitFor(() => {

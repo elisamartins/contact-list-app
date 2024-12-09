@@ -7,5 +7,3 @@ export interface IContact {
     phoneNumbers: string[];
     address?: string;
 }
-
-export type IContactFormData = Omit<IContact, "id">;

@@ -36,6 +36,7 @@ function App() {
 	return (
 		<>
 			<ResponsiveLayout activePanelIndex={activePanel}>
+				
 				<ContactList
 					selectedContactId={selectedContactId}
 					contacts={contacts}
@@ -45,6 +46,7 @@ function App() {
 					}}
 					onClickAddContact={() => setCreateContactFormOpen(true)}
 				/>
+
 				{selectedContact && (
 					<ContactDetails
 						key={`${selectedContactId}-contact-details`}
@@ -65,6 +67,7 @@ function App() {
 					/>
 				)}
 			</ResponsiveLayout>
+
 			<ContactFormDialog
 				open={createContactFormOpen}
 				onClose={() => setCreateContactFormOpen(false)}
@@ -74,6 +77,7 @@ function App() {
 					onSubmitForm={handleCreateContact}
 				/>
 			</ContactFormDialog>
+
 			{selectedContact && (
 				<ContactFormDialog
 					key={`${selectedContactId}-form-dialog`}

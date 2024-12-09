@@ -5,13 +5,14 @@ import {
 	Stack,
 	TextField,
 } from "@mui/material";
-import { IContactFormData } from "../../types";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TextfieldWithErrorMessage from "./TextFieldWithErrorMessage";
+import { IContactFormData, IFormInput } from "./types";
+import { mapPhoneDataToInput, mapPhoneInputToData } from "./utils";
 
 const phoneRegExp =
 	/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -33,46 +34,12 @@ const schema = yup.object().shape({
 	imageUrl: yup.string().optional(),
 });
 
-interface IPhoneInput {
-	number?: string;
-}
-
-interface IFormInput {
-	name: string;
-	jobTitle?: string;
-	address?: string;
-	email?: string;
-	phoneNumbers?: IPhoneInput[];
-	imageUrl?: string;
-}
-
 const defaultValues: IFormInput = {
 	name: "",
 	jobTitle: "",
 	address: "",
 	email: "",
 	phoneNumbers: [{ number: "" }],
-};
-
-const mapPhoneDataToInput = (phoneNumbers: string[]) => {
-	const result = phoneNumbers.map((phone) => ({
-		number: phone,
-	}));
-	return result.length > 0
-		? result
-		: [
-				{
-					number: "",
-				},
-		  ];
-};
-
-const mapPhoneInputToData = (phoneNumbers?: IPhoneInput[]) => {
-	return phoneNumbers
-		? phoneNumbers
-				.filter((phone) => phone.number)
-				.map((phone) => phone.number as string)
-		: [];
 };
 
 interface Props {

@@ -1,4 +1,4 @@
-import { IContactFormData } from "../types";
+import { IContactFormData } from "../components/form/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 export const cacheKey = "/contacts";
