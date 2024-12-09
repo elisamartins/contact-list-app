@@ -1,7 +1,7 @@
 import { IContactFormData } from "../../src/types";
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import ContactForm from "../../src/components/ContactForm";
+import ContactForm from "../../src/components/form/ContactForm";
 import { it, expect, describe, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";

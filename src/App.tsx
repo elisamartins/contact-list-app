@@ -1,12 +1,12 @@
 import ContactList from "./components/ContactList";
 import { useState } from "react";
 import ContactDetails from "./components/ContactDetails";
-import ContactFormDialog from "./components/ContactFormDialog";
+import ContactFormDialog from "./components/form/ContactFormDialog";
 import ResponsiveLayout from "./components/ResponsiveLayout";
 import { ArrowBack } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { useContacts } from "./hooks/useContacts";
-import ContactForm from "./components/ContactForm";
+import ContactForm from "./components/form/ContactForm";
 
 function App() {
 	const [createContactFormOpen, setCreateContactFormOpen] =
