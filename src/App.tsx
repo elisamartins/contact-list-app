@@ -36,7 +36,7 @@ function App() {
 	return (
 		<>
 			<ResponsiveLayout activePanelIndex={activePanel}>
-				
+
 				<ContactList
 					selectedContactId={selectedContactId}
 					contacts={contacts}
@@ -88,7 +88,7 @@ function App() {
 					<ContactForm
 						onSubmitForm={handleUpdateContact}
 						initialValues={selectedContact}
-						onCancel={() => setCreateContactFormOpen(false)}
+						onCancel={() => setUpdateContactFormOpen(false)}
 					/>
 				</ContactFormDialog>
 			)}
