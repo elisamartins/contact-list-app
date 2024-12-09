@@ -24,25 +24,28 @@ A React-based single-page app to manage contacts. Users can create, modify, dele
 ## How to Run Locally
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/yourusername/contact-list-app.git
    cd contact-list-app
-    ```
+   ```
 
 2. Install dependencies:
+
    ```
    npm install
-    ```
+   ```
 
 3. Run the app:
+
    ```
    npm start
-    ```
-  
+   ```
+
 4. Start the mocked API:
-    ```
-    json-server --watch db.json --port 5000
-    ```
+   ```
+   json-server --watch db.json --port 5000
+   ```
 
 App will be available on http://localhost:5173, and API on http://localhost:3000.
 
@@ -50,5 +53,6 @@ App will be available on http://localhost:5173, and API on http://localhost:3000
 
 To run the unit tests:
 
-  ```
-  npm test
+```
+npm test
+```
