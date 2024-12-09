@@ -14,7 +14,9 @@ export function getJobTitle() {
 }
 
 export function getPhones() {
-  return screen.getAllByPlaceholderText("Phone Number");
+  return screen.getAllByRole("textbox", {
+    name: /phone number/i,
+  });
 }
 
 export function getEmail() {

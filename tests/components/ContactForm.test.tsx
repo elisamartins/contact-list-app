@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import ContactForm from "../../src/components/form/ContactForm";
 import { it, expect, describe, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -81,7 +81,7 @@ describe(ContactForm, () => {
       await userEvent.click(addButton);
       const firstDeleteButton = getFirstPhoneDeleteButton();
       await userEvent.click(firstDeleteButton);
-      const phoneFields = screen.getAllByPlaceholderText("Phone Number");
+      const phoneFields = getPhones();
       expect(phoneFields).toHaveLength(1);
     });
 
