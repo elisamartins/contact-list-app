@@ -5,6 +5,7 @@ import { it, expect, describe, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";
 import { IContactFormData } from "../../src/components/form/types";
+import { getName, getJobTitle, getEmail, getAddress, getImageUrl, getPhones, clickSubmitButton, getAddPhoneNumber, getFirstPhoneDeleteButton } from "./helpers";
 
 describe(ContactForm, () => {
 	describe("without initial values", () => {
@@ -121,50 +122,3 @@ describe(ContactForm, () => {
 		});
 	});
 });
-
-function getName() {
-	return screen.getByRole("textbox", {
-		name: /name/i,
-	});
-}
-
-function getJobTitle() {
-	return screen.getByRole("textbox", {
-		name: /job title/i,
-	});
-}
-
-function getPhones() {
-	return screen.getAllByPlaceholderText("Phone Number");
-}
-
-function getEmail() {
-	return screen.getByRole("textbox", {
-		name: /email/i,
-	});
-}
-
-function getAddress() {
-	return screen.getByRole("textbox", {
-		name: /address/i,
-	});
-}
-
-function getImageUrl() {
-	return screen.getByRole("textbox", {
-		name: /image url/i,
-	});
-}
-
-function getAddPhoneNumber() {
-	return screen.getByText(/add a phone number/i);
-}
-
-function getFirstPhoneDeleteButton() {
-	return screen.getByRole("button", {
-		name: new RegExp(`delete phone field ${0}`, "i"),
-	});
-}
-function clickSubmitButton() {
-	userEvent.click(screen.getByRole("button", { name: /save changes/i }));
-}
