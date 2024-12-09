@@ -36,13 +36,18 @@ A React-based single-page app to manage contacts. Users can create, modify, dele
    npm install
    ```
 
-3. Run the app:
+3. Create a `.env` file in the root directory of the project and add the following variable:
+   ```
+   VITE_API_URL=http://localhost:3000
+   ```
+   
+4. Run the app:
 
    ```
    npm run dev
    ```
 
-4. Start the mocked API:
+5. Start the mocked API:
    ```
    npm run start:json-server
    ```
