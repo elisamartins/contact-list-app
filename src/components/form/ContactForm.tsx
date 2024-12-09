@@ -3,7 +3,6 @@ import {
   IconButton,
   InputAdornment,
   Stack,
-  TextField,
 } from "@mui/material";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -113,7 +112,7 @@ export default function ContactForm({
           <TextfieldWithErrorMessage
             key={field.id}
             type="tel"
-            placeholder="Phone Number"
+            label="Phone Number"
             error={Boolean(errors.phoneNumbers?.[index])}
             helperText={errors.phoneNumbers?.[index]?.number?.message}
             {...register(`phoneNumbers.${index}.number`)}
