@@ -2,6 +2,7 @@ import {
 	Avatar,
 	Button,
 	List,
+	ListItem,
 	ListItemAvatar,
 	ListItemButton,
 	ListItemText,
@@ -15,14 +16,14 @@ import { useMemo } from "react";
 import { sortContactsByName } from "../utils";
 
 interface Props {
-    contacts: IContact[];
-    selectedContactId?: string | null;
+	contacts: IContact[];
+	selectedContactId?: string | null;
 	onClickAddContact: () => void;
 	onClickContact: (id: string) => void;
 }
 
 export default function ContactList({
-    selectedContactId,
+	selectedContactId,
 	contacts,
 	onClickAddContact,
 	onClickContact,
@@ -54,20 +55,22 @@ export default function ContactList({
 					Add Contact
 				</Button>
 			</ListSubheader>
+			
 			{sortedContacts.map((contact) => (
-				<ListItemButton
-					key={contact.id}
-                    selected={!mobile && selectedContactId == contact.id}
-					onClick={() => onClickContact(contact.id)}
-				>
-					<ListItemAvatar>
-						<Avatar src={contact.imageUrl} />
-					</ListItemAvatar>
-					<ListItemText
-						primary={contact.name}
-						secondary={contact.jobTitle}
-					/>
-				</ListItemButton>
+				<ListItem key={contact.id} disablePadding>
+					<ListItemButton
+						selected={!mobile && selectedContactId == contact.id}
+						onClick={() => onClickContact(contact.id)}
+					>
+						<ListItemAvatar>
+							<Avatar src={contact.imageUrl} />
+						</ListItemAvatar>
+						<ListItemText
+							primary={contact.name}
+							secondary={contact.jobTitle}
+						/>
+					</ListItemButton>
+				</ListItem>
 			))}
 		</List>
 	);
