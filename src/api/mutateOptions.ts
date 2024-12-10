@@ -1,6 +1,5 @@
 import { IContactFormData } from "../components/form/types";
 import { IContact } from "../types";
-import { v4 as uuidv4 } from "uuid";
 
 const filterContactsById = (id: string, contacts: IContact[]) =>
   contacts.filter((c) => c.id !== id);
@@ -9,7 +8,7 @@ export function createContactOptions(formData: IContactFormData) {
   return {
     optimisticData: (contacts: IContact[]) => [
       ...contacts,
-      { ...formData, id: uuidv4() },
+      { ...formData, id: "newContact" },
     ],
     populateCache: (createdContact: IContact, contacts: IContact[]) => [
       ...contacts,
