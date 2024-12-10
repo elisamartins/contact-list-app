@@ -2,7 +2,6 @@ import React from "react";
 import { render, waitFor } from "@testing-library/react";
 import ContactForm from "../../src/components/form/ContactForm";
 import { it, expect, describe, vi } from "vitest";
-import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";
 import { IContactFormData } from "../../src/components/form/types";
 import {
@@ -94,6 +93,15 @@ describe(ContactForm, () => {
         expect(phoneFields[0]).toBeInvalid();
       });
     });
+
+    it("shows error when email is invalid", async () => {
+      const emailField = getEmail();
+      await userEvent.type(emailField, "123");
+      clickSubmitButton();
+      await waitFor(() => {
+        expect(emailField).toBeInvalid();
+      });
+    });
   });
 
   describe("with initialValues", () => {
@@ -104,7 +112,7 @@ describe(ContactForm, () => {
       address: "123 Apple Street",
       email: "johnny.appleseed@gmail.com",
       imageUrl: "https://mock-image.com",
-      phoneNumbers: [],
+      phoneNumbers: ["123-456-7890"],
     };
 
     beforeEach(() => {
@@ -126,6 +134,15 @@ describe(ContactForm, () => {
       });
 
       expect(mockOnSubmitForm).toHaveBeenCalledWith(mockContact);
+    });
+
+    it("renders with initial values", async () => {
+      expect(getName()).toHaveValue("Johnny Appleseed");
+      expect(getJobTitle()).toHaveValue("Frontend Developer");
+      expect(getAddress()).toHaveValue("123 Apple Street");
+      expect(getPhones()[0]).toHaveValue("123-456-7890");
+      expect(getImageUrl()).toHaveValue("https://mock-image.com");
+      expect(getEmail()).toHaveValue("johnny.appleseed@gmail.com");
     });
   });
 });
