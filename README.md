@@ -40,7 +40,6 @@ A React-based single-page app to manage contacts. Users can create, modify, dele
    ```
    VITE_API_URL=http://localhost:3000
    ```
-   
 4. Run the app:
 
    ```
@@ -69,8 +68,10 @@ This API serves as a mock backend to retrieve and manage contact data for testin
 ### Endpoints
 
 #### `GET /contacts`
+
 **Description:** Retrieves a list of all contacts.  
 **Example Response:**
+
 ```
 [
   {
@@ -86,8 +87,10 @@ This API serves as a mock backend to retrieve and manage contact data for testin
 ```
 
 #### `GET /contacts/:id`
+
 **Description:** Retrieves a specific contact by their ID.  
 **Example Response:**
+
 ```
 {
   "id": 1,
@@ -101,8 +104,10 @@ This API serves as a mock backend to retrieve and manage contact data for testin
 ```
 
 #### `POST /contacts`
+
 **Description:** Adds a new contact.  
 **Request Body:**
+
 ```
 {
   "name": "New Contact",
@@ -113,7 +118,9 @@ This API serves as a mock backend to retrieve and manage contact data for testin
   "imageUrl": "https://example.com"
 }
 ```
+
 **Example Response:**
+
 ```
 {
   "id": 1,
@@ -127,13 +134,16 @@ This API serves as a mock backend to retrieve and manage contact data for testin
 ```
 
 #### `PUT /contacts/:id`
+
 **Description:** Updates an existing contact.  
 **Request Body:** Same as `POST /contacts`.
 
 #### `DELETE /contacts/:id`
+
 **Description:** Deletes a contact by their ID.
 
 **Example Response:**
+
 ```
 {
   "id": 1,

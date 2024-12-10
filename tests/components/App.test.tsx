@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import React, { act } from "react";
+import { act } from "react";
 import * as useContactsModule from "../../src/hooks/useContacts"; // Import the module for mocking
 import App from "../../src/App";
 import { it, expect, describe, vi } from "vitest";

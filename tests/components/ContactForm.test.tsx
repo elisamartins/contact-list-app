@@ -1,4 +1,3 @@
-import React from "react";
 import { render, waitFor } from "@testing-library/react";
 import ContactForm from "../../src/components/form/ContactForm";
 import { it, expect, describe, vi } from "vitest";

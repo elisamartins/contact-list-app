@@ -1,6 +1,5 @@
 import { it, expect, describe, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
-import React from "react";
 import ContactDetails from "../../src/components/ContactDetails";
 import { IContact } from "../../src/types";
 import userEvent from "@testing-library/user-event";

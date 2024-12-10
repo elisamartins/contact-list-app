@@ -15,9 +15,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=2",
       "jobTitle": "Graphic Designer",
       "address": "456 Elm St, Montreal, QC, H2W 1R5",
-      "phoneNumbers": [
-        "514-555-1234"
-      ],
+      "phoneNumbers": ["514-555-1234"],
       "email": "jane.smith@example.com"
     },
     {
@@ -26,9 +24,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=3",
       "jobTitle": "Product Manager",
       "address": "789 Pine St, Montreal, QC, H3G 1B1",
-      "phoneNumbers": [
-        "514-555-5678"
-      ],
+      "phoneNumbers": ["514-555-5678"],
       "email": "alice.johnson@example.com"
     },
     {
@@ -46,9 +42,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=5",
       "jobTitle": "Marketing Specialist",
       "address": "245 Birch St, Montreal, QC, H3N 2L6",
-      "phoneNumbers": [
-        "514-555-9876"
-      ],
+      "phoneNumbers": ["514-555-9876"],
       "email": "emma.davis@example.com"
     },
     {
@@ -57,9 +51,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=6",
       "jobTitle": "HR Manager",
       "address": "678 Maple St, Montreal, QC, H2X 4C8",
-      "phoneNumbers": [
-        "514-555-3322"
-      ],
+      "phoneNumbers": ["514-555-3322"],
       "email": "william.garcia@example.com"
     },
     {
@@ -68,9 +60,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=7",
       "jobTitle": "Content Creator",
       "address": "812 Cedar St, Montreal, QC, H3H 3K4",
-      "phoneNumbers": [
-        "514-555-2211"
-      ],
+      "phoneNumbers": ["514-555-2211"],
       "email": "sophia.martinez@example.com"
     },
     {
@@ -79,9 +69,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=8",
       "jobTitle": "Accountant",
       "address": "132 Ash St, Montreal, QC, H3B 2M3",
-      "phoneNumbers": [
-        "514-555-5566"
-      ],
+      "phoneNumbers": ["514-555-5566"],
       "email": "james.wilson@example.com"
     },
     {
@@ -90,9 +78,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=9",
       "jobTitle": "UX Designer",
       "address": "546 Spruce St, Montreal, QC, H3L 1B7",
-      "phoneNumbers": [
-        "514-555-3344"
-      ],
+      "phoneNumbers": ["514-555-3344"],
       "email": "olivia.anderson@example.com"
     },
     {
@@ -101,9 +87,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=10",
       "jobTitle": "Technical Writer",
       "address": "397 Willow St, Montreal, QC, H2T 2G1",
-      "phoneNumbers": [
-        "514-555-7788"
-      ],
+      "phoneNumbers": ["514-555-7788"],
       "email": "benjamin.lee@example.com"
     },
     {
@@ -112,9 +96,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=11",
       "jobTitle": "Project Coordinator",
       "address": "851 Cypress St, Montreal, QC, H3P 3B5",
-      "phoneNumbers": [
-        "514-555-1155"
-      ],
+      "phoneNumbers": ["514-555-1155"],
       "email": "charlotte.thomas@example.com"
     },
     {
@@ -123,9 +105,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=12",
       "jobTitle": "Systems Analyst",
       "address": "212 Dogwood St, Montreal, QC, H2E 2J7",
-      "phoneNumbers": [
-        "514-555-4433"
-      ],
+      "phoneNumbers": ["514-555-4433"],
       "email": "henry.white@example.com"
     },
     {
@@ -134,9 +114,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=13",
       "jobTitle": "Sales Executive",
       "address": "909 Redwood St, Montreal, QC, H3R 3K1",
-      "phoneNumbers": [
-        "514-555-6677"
-      ],
+      "phoneNumbers": ["514-555-6677"],
       "email": "amelia.harris@example.com"
     },
     {
@@ -145,9 +123,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=14",
       "jobTitle": "Web Developer",
       "address": "111 Magnolia St, Montreal, QC, H2Z 3K9",
-      "phoneNumbers": [
-        "514-555-8899"
-      ],
+      "phoneNumbers": ["514-555-8899"],
       "email": "lucas.martin@example.com"
     },
     {
@@ -156,9 +132,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=15",
       "jobTitle": "Operations Manager",
       "address": "657 Aspen St, Montreal, QC, H3C 2B8",
-      "phoneNumbers": [
-        "514-555-5544"
-      ],
+      "phoneNumbers": ["514-555-5544"],
       "email": "mia.clark@example.com"
     },
     {
@@ -167,9 +141,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=16",
       "jobTitle": "Digital Strategist",
       "address": "344 Chestnut St, Montreal, QC, H2V 3N4",
-      "phoneNumbers": [
-        "514-555-3345"
-      ],
+      "phoneNumbers": ["514-555-3345"],
       "email": "ethan.lewis@example.com"
     },
     {
@@ -178,9 +150,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=17",
       "jobTitle": "Customer Success Manager",
       "address": "908 Cherry St, Montreal, QC, H3F 3R5",
-      "phoneNumbers": [
-        "514-555-7755"
-      ],
+      "phoneNumbers": ["514-555-7755"],
       "email": "isabella.young@example.com"
     },
     {
@@ -189,9 +159,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=18",
       "jobTitle": "Software Tester",
       "address": "641 Mulberry St, Montreal, QC, H3M 2K6",
-      "phoneNumbers": [
-        "514-555-9988"
-      ],
+      "phoneNumbers": ["514-555-9988"],
       "email": "alexander.hill@example.com"
     },
     {
@@ -200,9 +168,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=19",
       "jobTitle": "Recruitment Specialist",
       "address": "317 Walnut St, Montreal, QC, H2L 3A8",
-      "phoneNumbers": [
-        "514-555-6678"
-      ],
+      "phoneNumbers": ["514-555-6678"],
       "email": "emily.hall@example.com"
     },
     {
@@ -211,9 +177,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=20",
       "jobTitle": "AI Engineer",
       "address": "578 Beech St, Montreal, QC, H3N 1G4",
-      "phoneNumbers": [
-        "514-555-2233"
-      ],
+      "phoneNumbers": ["514-555-2233"],
       "email": "daniel.allen@example.com"
     },
     {
@@ -222,9 +186,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=21",
       "jobTitle": "Cloud Architect",
       "address": "128 Sycamore St, Montreal, QC, H3G 2N7",
-      "phoneNumbers": [
-        "514-555-4455"
-      ],
+      "phoneNumbers": ["514-555-4455"],
       "email": "sophie.wright@example.com"
     },
     {
@@ -233,9 +195,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=22",
       "jobTitle": "SEO Specialist",
       "address": "234 Fir St, Montreal, QC, H3C 3B8",
-      "phoneNumbers": [
-        "514-555-5599"
-      ],
+      "phoneNumbers": ["514-555-5599"],
       "email": "jack.scott@example.com"
     },
     {
@@ -244,9 +204,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=23",
       "jobTitle": "Business Analyst",
       "address": "871 Larch St, Montreal, QC, H2T 1J7",
-      "phoneNumbers": [
-        "514-555-2231"
-      ],
+      "phoneNumbers": ["514-555-2231"],
       "email": "grace.king@example.com"
     },
     {
@@ -255,9 +213,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=24",
       "jobTitle": "Mobile App Developer",
       "address": "192 Poplar St, Montreal, QC, H3B 2P4",
-      "phoneNumbers": [
-        "514-555-7789"
-      ],
+      "phoneNumbers": ["514-555-7789"],
       "email": "nathan.green@example.com"
     },
     {
@@ -266,9 +222,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=25",
       "jobTitle": "Social Media Manager",
       "address": "654 Pinecone St, Montreal, QC, H3N 3M2",
-      "phoneNumbers": [
-        "514-555-4466"
-      ],
+      "phoneNumbers": ["514-555-4466"],
       "email": "victoria.adams@example.com"
     },
     {
@@ -277,9 +231,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=26",
       "jobTitle": "IT Support Specialist",
       "address": "948 Banyan St, Montreal, QC, H2V 2G5",
-      "phoneNumbers": [
-        "514-555-8890"
-      ],
+      "phoneNumbers": ["514-555-8890"],
       "email": "ryan.baker@example.com"
     },
     {
@@ -288,9 +240,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=27",
       "jobTitle": "Game Developer",
       "address": "511 Palm St, Montreal, QC, H3E 1J9",
-      "phoneNumbers": [
-        "514-555-1122"
-      ],
+      "phoneNumbers": ["514-555-1122"],
       "email": "chloe.nelson@example.com"
     },
     {
@@ -299,9 +249,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=28",
       "jobTitle": "Network Administrator",
       "address": "723 Hickory St, Montreal, QC, H3A 3C8",
-      "phoneNumbers": [
-        "514-555-3346"
-      ],
+      "phoneNumbers": ["514-555-3346"],
       "email": "liam.carter@example.com"
     },
     {
@@ -310,9 +258,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=29",
       "jobTitle": "Cybersecurity Analyst",
       "address": "389 Willow St, Montreal, QC, H2Z 2N9",
-      "phoneNumbers": [
-        "514-555-7791"
-      ],
+      "phoneNumbers": ["514-555-7791"],
       "email": "zoe.collins@example.com"
     },
     {
@@ -321,9 +267,7 @@
       "imageUrl": "https://i.pravatar.cc/150?u=30",
       "jobTitle": "Blockchain Developer",
       "address": "847 Sequoia St, Montreal, QC, H3F 1J3",
-      "phoneNumbers": [
-        "514-555-5561"
-      ],
+      "phoneNumbers": ["514-555-5561"],
       "email": "noah.murphy@example.com"
     },
     {
@@ -332,9 +276,7 @@
       "jobTitle": "",
       "address": "",
       "email": "",
-      "phoneNumbers": [
-        "123456789"
-      ],
+      "phoneNumbers": ["123456789"],
       "imageUrl": ""
     }
   ]
